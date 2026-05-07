@@ -1,0 +1,690 @@
+2<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early Berds Cafe & Coffee | Hamilton, OH</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F2;
+    --brown: #3B2A1A;
+    --brown-mid: #6B4226;
+    --brown-light: #A0714F;
+    --gold: #D4A853;
+    --gold-light: #F0D49A;
+    --green: #4A6741;
+    --green-light: #E8F0E6;
+    --text: #2C1E10;
+    --text-mid: #5C4030;
+    --text-light: #8A7060;
+    --white: #FFFFFF;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--brown);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+  }
+  .nav-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-family: Georgia, serif;
+  }
+  .nav-logo span { color: var(--white); font-weight: normal; font-size: 13px; display: block; letter-spacing: 3px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-family: Arial, sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    margin-top: 64px;
+    height: 92vh;
+    min-height: 560px;
+    background: linear-gradient(160deg, #2C1E10 0%, #5C3520 50%, #8B5A30 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('images/hero.jpg') center/cover no-repeat;
+    opacity: 0.25;
+  }
+  .hero-content { position: relative; z-index: 2; padding: 0 20px; }
+  .hero-eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(52px, 10vw, 96px);
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--brown);
+    padding: 14px 32px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-hours {
+    position: absolute;
+    bottom: 32px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 2;
+  }
+  .hero-hours-item { text-align: center; }
+  .hero-hours-item .label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .hero-hours-item .value { font-size: 15px; color: rgba(255,255,255,0.9); margin-top: 2px; }
+
+  /* SECTION SHARED */
+  section { padding: 80px 5%; }
+  .section-eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .section-body {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 540px;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  .about { background: var(--white); }
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img {
+    aspect-ratio: 4/3;
+    background: url('images/about.jpg') center/cover;
+    position: relative;
+  }
+  .about-img::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 60%;
+    height: 60%;
+    border: 3px solid var(--gold);
+    z-index: -1;
+  }
+  .about-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-light);
+    color: var(--green);
+    padding: 8px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+  .about-tag::before { content: '●'; font-size: 8px; }
+
+  /* MENU HIGHLIGHTS */
+  .menu-section { background: var(--cream); }
+  .menu-inner { max-width: 1100px; margin: 0 auto; }
+  .menu-header { text-align: center; margin-bottom: 56px; }
+  .menu-header .section-body { margin: 0 auto; text-align: center; }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+  .menu-card {
+    background: var(--white);
+    padding: 32px 28px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .menu-card:hover { transform: translateY(-4px); }
+  .menu-card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .menu-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .menu-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+  .menu-card-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--brown);
+    color: var(--gold);
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+  }
+
+  /* GALLERY */
+  .gallery { background: var(--brown); padding: 80px 0; }
+  .gallery-inner { max-width: 1100px; margin: 0 auto; padding: 0 5%; }
+  .gallery-header { text-align: center; margin-bottom: 48px; }
+  .gallery-header .section-eyebrow { color: var(--gold); }
+  .gallery-header .section-title { color: var(--white); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 4px;
+  }
+  .gallery-item {
+    background: #5C3520;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item:first-child { grid-row: span 2; }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s, transform 0.4s;
+  }
+  .gallery-item:hover img { opacity: 1; transform: scale(1.04); }
+  .gallery-item-label {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(44,30,16,0.8);
+    color: var(--gold-light);
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+  }
+
+  /* REVIEWS */
+  .reviews { background: var(--cream); }
+  .reviews-inner { max-width: 1100px; margin: 0 auto; }
+  .reviews-header { text-align: center; margin-bottom: 52px; }
+  .reviews-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .score-big { font-size: 56px; font-weight: bold; color: var(--brown); line-height: 1; }
+  .score-detail { text-align: left; }
+  .stars { font-size: 22px; color: var(--gold); letter-spacing: 2px; }
+  .score-label { font-family: Arial, sans-serif; font-size: 12px; color: var(--text-light); margin-top: 4px; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .review-card {
+    background: var(--white);
+    padding: 28px;
+    border-left: 3px solid var(--gold);
+  }
+  .review-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+  .review-text { font-size: 15px; color: var(--text-mid); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+  .review-author { font-family: Arial, sans-serif; font-size: 12px; color: var(--text-light); letter-spacing: 1px; text-transform: uppercase; }
+  .review-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    padding: 3px 10px;
+    margin-top: 10px;
+    margin-right: 4px;
+  }
+
+  /* INFO STRIP */
+  .info-strip {
+    background: var(--gold);
+    padding: 0;
+  }
+  .info-strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .info-item {
+    padding: 44px 40px;
+    border-right: 1px solid rgba(44,30,16,0.2);
+  }
+  .info-item:last-child { border-right: none; }
+  .info-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    margin-bottom: 10px;
+  }
+  .info-value { font-size: 17px; color: var(--brown); font-weight: bold; margin-bottom: 4px; }
+  .info-sub { font-size: 13px; color: var(--brown-mid); }
+  .info-icon { font-size: 24px; margin-bottom: 14px; }
+
+  /* CONTACT/FOOTER */
+  footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.7);
+    padding: 56px 5% 40px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 32px;
+  }
+  .footer-logo { font-size: 28px; color: var(--gold); font-style: italic; margin-bottom: 12px; }
+  .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  footer h4 {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  footer ul { list-style: none; }
+  footer ul li { font-size: 14px; margin-bottom: 8px; }
+  footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 14px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-img { aspect-ratio: 16/9; }
+    .about-img::after { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-row: span 1; grid-column: span 2; }
+    .info-strip-inner { grid-template-columns: 1fr; }
+    .info-item { border-right: none; border-bottom: 1px solid rgba(44,30,16,0.2); padding: 32px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    Early Berds
+    <span>Cafe & Coffee</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Hamilton, Ohio · German Village</p>
+    <h1>Early <em>Berds</em></h1>
+    <p class="hero-sub">Cafe &amp; Coffee — Est. 2025</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="#visit" class="btn-outline">Find Us</a>
+    </div>
+  </div>
+  <div class="hero-hours">
+    <div class="hero-hours-item">
+      <div class="label">Weekdays</div>
+      <div class="value">6 am – 2 pm</div>
+    </div>
+    <div class="hero-hours-item">
+      <div class="label">Weekends</div>
+      <div class="value">7 am – 2 pm</div>
+    </div>
+    <div class="hero-hours-item">
+      <div class="label">Open</div>
+      <div class="value">7 Days a Week</div>
+    </div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img"></div>
+    <div>
+      <p class="section-eyebrow">Our Story</p>
+      <h2 class="section-title">Hamilton's Home for Breakfast & Brunch</h2>
+      <div class="about-tag">Local &amp; Regional Vendors</div>
+      <p class="section-body">
+        Nestled in Hamilton's historic German Village, Early Berds brings American breakfast classics to life in a warm European café atmosphere. Owner Logan Fitzwater — a Hamilton native — built this spot from the ground up with his grandfather, brick by brick, to give this city the seven-day breakfast destination it deserves.
+      </p>
+      <p class="section-body" style="margin-top: 16px;">
+        From farm-fresh eggs to hand-crafted espresso sourced from Deeper Roots Coffee in Cincinnati, everything we serve is made with care and community in mind.
+      </p>
+      <p style="margin-top: 28px; font-family: Arial, sans-serif; font-size: 13px; color: var(--text-light);">
+        202 N. Third St., Hamilton, OH 45011 &nbsp;·&nbsp; (513) 601-2716
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <p class="section-eyebrow">What We Serve</p>
+      <h2 class="section-title">Something for Every Morning</h2>
+      <p class="section-body">Classic American breakfast with a healthy, farm-to-table twist. Dine in, take out, or have it delivered.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-icon">🥑</div>
+        <h3>Avocado Toast</h3>
+        <p>Crispy sourdough loaded with fresh avocado — add a perfectly cooked egg and Canadian bacon for the full experience.</p>
+        <div class="review-tag">Customer Favorite</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🍳</div>
+        <h3>Eggs Benedict</h3>
+        <p>A Hamilton brunch classic, made fresh every morning with poached eggs and house hollandaise.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🌮</div>
+        <h3>Breakfast Tacos</h3>
+        <div class="menu-card-badge">⭐ Top Pick</div>
+        <p>A fan-favorite since day one. Packed with fresh fillings and morning-bright flavors.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🥚</div>
+        <h3>Omelets & Plates</h3>
+        <p>Hearty egg plates and creative omelets served with seasoned breakfast potatoes.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🍞</div>
+        <h3>French Toast</h3>
+        <p>Try the legendary Tiramisu French Toast — a house specialty guests keep coming back for.</p>
+        <div class="review-tag">Must Try</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">☕</div>
+        <h3>Coffee & Espresso</h3>
+        <p>Cortados, lattes, cappuccinos, and Americanos — all made with beans from Deeper Roots Coffee, Cincinnati.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🥣</div>
+        <h3>Bowls & Lighter Fare</h3>
+        <p>Breakfast bowls, yogurt, and rotating daily muffins for a lighter morning bite.</p>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-icon">🧒</div>
+        <h3>Kids Menu</h3>
+        <p>Pancakes, French toast, and the "Lil Berds Breakfast" — egg, bacon or sausage, and potatoes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <p class="section-eyebrow">Fresh Every Morning</p>
+      <h2 class="section-title" style="color: white;">Come See What's Cooking</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/gallery-1.jpg" alt="Breakfast spread" loading="lazy">
+        <div class="gallery-item-label">Morning Menu</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery-2.jpg" alt="Eggs benedict" loading="lazy">
+        <div class="gallery-item-label">Eggs Benedict</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery-3.jpg" alt="Coffee" loading="lazy">
+        <div class="gallery-item-label">Espresso Bar</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery-4.jpg" alt="Avocado toast" loading="lazy">
+        <div class="gallery-item-label">Avocado Toast</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery-5.jpg" alt="Cafe interior" loading="lazy">
+        <div class="gallery-item-label">Cozy Interior</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <p class="section-eyebrow">What People Are Saying</p>
+      <h2 class="section-title">Hamilton Loves Early Berds</h2>
+    </div>
+    <div class="reviews-score">
+      <div class="score-big">88%</div>
+      <div class="score-detail">
+        <div class="stars">★★★★★</div>
+        <div style="font-size: 14px; color: var(--text-mid); margin-top: 4px;">Recommend on Facebook</div>
+        <div class="score-label">Based on 13 Reviews</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"My breakfast was so delicious! Custom sandwich, breakfast potatoes, and the tiramisu French toast. Great portions and the service was friendly and quick. It outperforms every breakfast spot nearby!"</p>
+        <div class="review-author">Sarah Jones</div>
+        <div>
+          <span class="review-tag">Best Brunch</span>
+          <span class="review-tag">Great Food</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"You can smell this place 3 blocks away in the morning. I felt like a cartoon character following the scent trail to a warm pie in the window. Absolutely delicious."</p>
+        <div class="review-author">Joni Shepherd</div>
+        <div>
+          <span class="review-tag">Large Portions</span>
+          <span class="review-tag">Cheap Eats</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Avocado toast is delicious with a perfect over-medium egg and crispy bacon. Might just be my go-to breakfast now!"</p>
+        <div class="review-author">Jennifer Hover</div>
+        <div>
+          <span class="review-tag">Comfort Food</span>
+          <span class="review-tag">Great Food</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Amazing first experience! The staff was extremely welcoming and made sure to seat us quickly, even with a packed house. Highly recommend the breakfast tacos!"</p>
+        <div class="review-author">Whitney Schappacher</div>
+        <div>
+          <span class="review-tag">Cosy Atmosphere</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great home style breakfast, friendly atmosphere, and excellent service! A great addition to downtown Hamilton."</p>
+        <div class="review-author">Christy Capri</div>
+        <div>
+          <span class="review-tag">Casual</span>
+          <span class="review-tag">Large Portions</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The cortado coffee was very good and came out quickly. Avocado toast on sourdough with Canadian bacon and egg — very good. Looking forward to returning!"</p>
+        <div class="review-author">Joan Trent</div>
+        <div>
+          <span class="review-tag">Great Coffee</span>
+          <span class="review-tag">Attentive Service</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="info-strip" id="visit">
+  <div class="info-strip-inner">
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-label">Location</div>
+      <div class="info-value">202 N. Third St.</div>
+      <div class="info-sub">Hamilton, OH 45011 — German Village</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕕</div>
+      <div class="info-label">Hours</div>
+      <div class="info-value">Mon–Fri: 6 am – 2 pm</div>
+      <div class="info-sub">Sat–Sun: 7 am – 2 pm</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div class="info-label">Contact</div>
+      <div class="info-value">(513) 601-2716</div>
+      <div class="info-sub">Dine-in · Takeout · Delivery</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Early Berds</div>
+      <p class="footer-tagline">Breakfast &amp; brunch done right, seven days a week in the heart of Hamilton's German Village. American classics with a European café soul.</p>
+      <div class="footer-social" style="margin-top: 24px;">
+        <a href="https://www.facebook.com/p/Early-Berds-61572128033383/" class="social-btn" target="_blank">f</a>
+        <a href="tel:5136012716" class="social-btn">☎</a>
+      </div>
+    </div>
+    <div>
+      <h4>Menu</h4>
+      <ul>
+        <li>Avocado Toast</li>
+        <li>Eggs Benedict</li>
+        <li>Breakfast Tacos</li>
+        <li>Omelets & Plates</li>
+        <li>French Toast</li>
+        <li>Coffee & Espresso</li>
+        <li>Kids Menu</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Visit Us</h4>
+      <ul>
+        <li>202 N. Third St.</li>
+        <li>Hamilton, OH 45011</li>
+        <li style="margin-top: 12px;"><a href="tel:5136012716">(513) 601-2716</a></li>
+        <li style="margin-top: 12px;">Mon–Fri: 6 am – 2 pm</li>
+        <li>Sat–Sun: 7 am – 2 pm</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Early Berds Cafe & Coffee, Hamilton, OH</span>
+    <span>Dine-in · Takeout · Delivery</span>
+  </div>
+</footer>
+
+</body>
+</html>
